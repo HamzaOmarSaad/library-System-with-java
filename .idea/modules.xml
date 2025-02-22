@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/liberary system/liberary system.iml" filepath="$PROJECT_DIR$/liberary system/liberary system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/liberary system v1/liberary system v1.iml" filepath="$PROJECT_DIR$/liberary system v1/liberary system v1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/liberary system v2/liberary system v2.iml" filepath="$PROJECT_DIR$/liberary system v2/liberary system v2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/task 1.iml" filepath="$PROJECT_DIR$/.idea/task 1.iml" />
     </modules>
   </component>

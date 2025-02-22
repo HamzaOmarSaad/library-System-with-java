@@ -56,6 +56,7 @@ class liberary
             if(books.get(i).getId() == id)
             {
                 books.remove(i);
+                System.out.println("Book removed");
                 break;
             }
         }
@@ -187,6 +188,7 @@ class customer{
         this.age = age;
         this.fav_genra = fav_genra;
         this.id = idCounter;
+        System.out.println("Customer created and his id is " + id);
         idCounter++;
 
     }
@@ -211,27 +213,21 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("welcome to the library");
         liberary liberary = new liberary();
-        while (true)
-        {
+        while (true) {
             Scanner sc = new Scanner(System.in);
-
-
-            System.out.println("what do you want to do?");
-            System.out.println("1. Book related operation");
-            System.out.println("2. customer related operation");
-            System.out.println("3. exit");
+            System.out.print("who are you? : ");
+            System.out.print("1)operator  ,");
+            System.out.print(" 2)customer ");
             int choice1 = sc.nextInt();
-
+            sc.nextLine();
             if (choice1 == 1) {
                 System.out.println("1. add Book");
                 System.out.println("2. remove Book");
-                System.out.println("3. suggest Book");
-                System.out.println("4. search Book");
-                System.out.println("5. display Book");
-                System.out.println("6. exit");
+                System.out.println("3. add customer ");
+                System.out.println("4. remove customer");
+                System.out.println("5.exit");
                 int choice2 = sc.nextInt();
                 sc.nextLine();
-
                 if (choice2 == 1) {
                     System.out.println("Enter book title: ");
                     String title = sc.nextLine() ;
@@ -244,46 +240,13 @@ public class Main {
                     book book = new book(title, author, id, true, genre);
                     liberary.add_book(book);
                     System.out.println("Book added successfully!");
-
                 }
-                else if (choice2 == 2) {
+                else if (choice2==2) {
                     System.out.print("Enter book ID: ");
                     int id = sc.nextInt();
                     liberary.remove_book(id);
-
                 }
                 else if (choice2 == 3) {
-                    System.out.print("Enter customer ID: ");
-                    int id = sc.nextInt();
-                    liberary.suggest_books(liberary.getCustomerById(id));
-                }
-                else if (choice2 == 4) {
-                    System.out.print("Enter keyword: ");
-                    String keyword = sc.nextLine();
-                    liberary.searchBook(keyword);
-                }
-                else if (choice2 == 5) {
-                    liberary.dispaly_books();
-                }
-                else if (choice2 == 6) {
-                    System.out.println("exiting");
-                    System.exit(0);
-                }
-                else {
-                    System.out.println("Invalid choice, please try again.");
-                }
-            }
-            else if (choice1 == 2) {
-                System.out.println("1. add customer ");
-                System.out.println("2. remove customer");
-                System.out.println("3. print customer's borrowed books");
-                System.out.println("4. borrow book ");
-                System.out.println("5. return book ");
-                System.out.println("6. exit");
-                int choice2 = sc.nextInt();
-                sc.nextLine();
-
-                if (choice2 == 1) {
                     System.out.print("Enter customer name: ");
                     String name = sc.nextLine();
                     System.out.print("Enter customer age: ");
@@ -293,55 +256,80 @@ public class Main {
                     String genre = sc.nextLine();
                     customer customer = new customer(name, age, genre);
                     liberary.add_costumer(customer);
-
-
                 }
-                else if (choice2 == 2) {
+                else if (choice2 == 4) {
                     System.out.print("Enter customer id: ");
                     int id  = sc.nextInt();
                     liberary.remove_costomer(id);
-
-                }
-                else if (choice2 == 3) {
-                    System.out.print("Enter customer id: ");
-                    int id  = sc.nextInt();
-                    liberary.getCustomerById(id).print_borrowed();
-
-                }
-                else if (choice2 == 4) {
-                    System.out.print("Enter customer id who want to borrow: ");
-                    int id1  = sc.nextInt();
-                    System.out.println("Enter book id : ");
-                    int id2  = sc.nextInt();
-                    liberary.borrow_book(id2,liberary.getCustomerById(id1));
-
                 }
                 else if (choice2 == 5) {
-                    System.out.print("Enter customer id who want to return: ");
-                    int id1  = sc.nextInt();
-                    System.out.println("Enter book id : ");
-
-                    int id2  = sc.nextInt();
-                    liberary.return_book(id2,liberary.getCustomerById(id1));
-
-                } else if (choice2 == 6) {
-                    System.out.println("exiting");
+                    System.out.print("Exiting program. ");
                     System.exit(0);
-
-                } else {
-                    System.out.println("Invalid choice, please try again.");
                 }
+                else {
+                    System.out.println(" invalid choice");
+                }
+
+
             }
-            else if (choice1 == 3) {
-                System.out.println("Exiting...");
-                return;
+            else if (choice1 == 2) {
+                System.out.println("what is your id ");
+                int id = sc.nextInt();
+                sc.nextLine();
+                if (liberary.getCustomerById(id) != null) {
+                    System.out.println("what do you want to do");
+                    System.out.println("1. suggest Book");
+                    System.out.println("2. search Book with title ");
+                    System.out.println("3. display  available Books");
+                    System.out.println("4. print  borrowed books");
+                    System.out.println("5. borrow book ");
+                    System.out.println("6. return book ");
+                    System.out.println("7. exit");
+                    int choice2 = sc.nextInt();
+                    sc.nextLine();
+                    if (choice2 == 1) {
+                        liberary.suggest_books(liberary.getCustomerById(id));
+                    }
+                    else if (choice2==2) {
+                        System.out.print("Enter title: ");
+                        String keyword = sc.nextLine();
+                        liberary.searchBook(keyword);
+                    }
+                    else if (choice2 == 3) {
+                        liberary.dispaly_books();
+                    }
+                    else if (choice2 == 4) {
+                        liberary.getCustomerById(id).print_borrowed();
+                    }
+                    else if (choice2 == 5) {
+                        System.out.println("Enter book id : ");
+                        int id2  = sc.nextInt();
+                        liberary.borrow_book(id2,liberary.getCustomerById(id));
+                    }
+                    else if (choice2 == 6) {
+                        System.out.println("Enter book id : ");
+                        int id2  = sc.nextInt();
+                        liberary.return_book(id2,liberary.getCustomerById(id));
+                    } else if (choice2 == 7) {
+                        System.out.println("Exiting program. ");
+                        System.exit(0);
+
+                    } else {
+                        System.out.println("invalid choice");
+                    }
+
+                }
+                else {
+                    System.out.println(" id is wrong or customer does not exist");
+                }
+
             }
             else {
-                System.out.println("Invalid choice, please try again.");
+                System.out.println("invalid choice");
             }
 
-
         }
+
 
 
     }
